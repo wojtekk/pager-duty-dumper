@@ -1,0 +1,21 @@
+{
+  "name": "pager-duty-dumper",
+  "version": "1.0.0",
+  "description": "Pager Duty Schedule Dumper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "pdd": "./index.js"
+  },
+  "keywords": [],
+  "author": "Wojciech Krawczyk <wojciech.krawczyk@schibsted.com>",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.24.0",
+    "node-pagerduty": "^1.2.0",
+    "user-home": "^2.0.0",
+    "yargs": "^15.3.1"
+  }
+}
