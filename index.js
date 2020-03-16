@@ -20,6 +20,10 @@ function formatTime(date) {
   return moment(date).format("HH:mm");
 }
 
+function printUsage() {
+  console.info('Usage: pager-duty-dumper [--token|-t] [--schedule|-s] [--month|-m]');
+}
+
 const args = yargs
     .option('schedule', {
       alias: 's',
@@ -42,20 +46,21 @@ const args = yargs
 const token = args.token || config.token;
 if (token.trim() === '') {
   console.error('Missing API Token');
-  console.info('Usage: pager-duty-dumper [--token|-t] [--schedule|-s] [--month|-m]');
+  printUsage();
   process.exit(1);
 }
 
 const schedule = args.schedule || config.schedule;
 if (schedule.trim() === '') {
   console.error('Missing Schedule ID');
-  console.info('Usage: pager-duty-dumper [--token|-t] [--schedule|-s] [--month|-m]');
+  printUsage();
   process.exit(2);
 }
 
 const month = args.month - 1;
 if (month < 0 || month > 11) {
   console.error('Incorrect Month. Allowed values: 1-12');
+  printUsage();
   process.exit(3);
 }
 
