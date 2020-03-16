@@ -10,6 +10,8 @@ To install script run command:
 npm install -g pager-duty-dumper
 ```
 
+Generate [Personal Pager Duty API Key](https://support.pagerduty.com/docs/generating-api-keys#section-generating-a-personal-rest-api-key).
+
 ## Usage
 
 To dump Schedule for previous month:
