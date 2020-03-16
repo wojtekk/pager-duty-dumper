@@ -1,6 +1,6 @@
 # Pager Duty Schedule Dumper
 
-Small script to dump Pager Duty Schedule to CVS format.
+Small script to dump Pager Duty Schedule to CSV format.
 
 ## How to install
 
