@@ -39,7 +39,7 @@ Optional command line parameters:
 
 ## Configuration
 
-You can store configuration in the file: `~/pager-duty-dumper.json`
+You can store configuration in the file: `~/.pager-duty-dumper.json`
 
 Example content:
 

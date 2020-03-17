@@ -7,7 +7,7 @@ const yargs = require('yargs');
 const pdClientFactory = require('node-pagerduty');
 
 let config = {};
-const configFile = `${userHome}/pager-duty-dumper.json`;
+const configFile = `${userHome}/.pager-duty-dumper.json`;
 if (fs.existsSync(configFile)) {
   config = require(configFile);
 }
