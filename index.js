@@ -13,7 +13,7 @@ if (fs.existsSync(configFile)) {
 }
 
 function formatDate(date) {
-  return moment(date).format("MM/DD/YYYY");
+  return moment(date).format("M/DD/YYYY");
 }
 
 function formatTime(date) {
