@@ -21,8 +21,16 @@ function formatTime(date) {
 }
 
 function printUsage() {
-  console.info('Usage: pager-duty-dumper [--token|-t] [--schedule|-s] [--month|-m]');
+  console.info('Usage: pager-duty-dumper [--token|-t] [--schedule|-s] [--month|-m] [--year|-y]');
 }
+
+const NOW = moment();
+
+// take the previous month as the default
+const defaultMonth = NOW.clone().subtract({month: 1}).month() + 1;
+
+// if today is January, then take the previous year, otherwise current one
+const defaultYear = NOW.month() === 0 ? NOW.year() - 1 : NOW.year();
 
 const args = yargs
     .option('schedule', {
@@ -34,7 +42,13 @@ const args = yargs
       alias: 'm',
       type: 'number',
       describe: 'Month',
-      default: moment().subtract({month: 1}).month() + 1,
+      default: defaultMonth,
+    })
+    .option('year', {
+      alias: 'y',
+      type: 'number',
+      describe: 'Year',
+      default: defaultYear,
     })
     .option('token', {
       alias: 't',
@@ -64,18 +78,26 @@ if (month < 0 || month > 11) {
   process.exit(3);
 }
 
+const year = args.year;
+if (!year) {
+  console.error('Year cannot be empty');
+  printUsage();
+  process.exit(3);
+}
+
 console.info('Fetching Pager Duty Schedule');
 console.info('Configuration:');
 console.info(`- Schedule ID: ${schedule}`);
 console.info(`- Month: ${month + 1}`);
+console.info(`- Year: ${year}`);
 console.info(`- API Token: ${token.substr(0, 3)}...`);
 
 const pdClient = new pdClientFactory(token);
 
 const params = {
   time_zone: 'Europe/Warsaw',
-  since: moment().set({month, date: 1, hour: 0, minute: 0, second: 0, millisecond: 0}).toString(),
-  until: moment().set({month: month + 1, date: 1, hour: 0, minute: 0, second: 0, millisecond: 0}).toString(),
+  since: NOW.clone().set({year, month, date: 1, hour: 0, minute: 0, second: 0, millisecond: 0}).toString(),
+  until: NOW.clone().set({year, month: month + 1, date: 1, hour: 0, minute: 0, second: 0, millisecond: 0}).toString(),
 };
 
 pdClient.schedules.getSchedule(schedule, params)
