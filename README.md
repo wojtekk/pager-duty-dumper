@@ -23,6 +23,7 @@ Fetching Pager Duty Schedule
 Configuration:
 - Schedule ID: XXXX
 - Month: 2
+- Year: 2020
 - API Token: -YY...
 
 Schedule:
@@ -36,6 +37,7 @@ Optional command line parameters:
 - `token`, `t` - Pager Duty API Token
 - `schedule`, `s` - Schedule ID
 - `month`, `m` - Month (1-12), default: previous month
+- `year`, `y` - Year, default: current year, or previous year if today is January 
 
 ## Configuration
 
